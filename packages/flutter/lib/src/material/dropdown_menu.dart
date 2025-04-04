@@ -844,18 +844,12 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
       if (!widget.enabled || !_menuHasEnabledItem || !_controller.isOpen) {
         return;
       }
-      _enableFilter = false;
       _enableSearch = false;
       currentHighlight ??= 0;
       currentHighlight = (currentHighlight! - 1) % filteredEntries.length;
       while (!filteredEntries[currentHighlight!].enabled) {
         currentHighlight = (currentHighlight! - 1) % filteredEntries.length;
       }
-      final String currentLabel = filteredEntries[currentHighlight!].label;
-      _localTextEditingController?.value = TextEditingValue(
-        text: currentLabel,
-        selection: TextSelection.collapsed(offset: currentLabel.length),
-      );
     });
   }
 
@@ -864,18 +858,12 @@ class _DropdownMenuState<T> extends State<DropdownMenu<T>> {
       if (!widget.enabled || !_menuHasEnabledItem || !_controller.isOpen) {
         return;
       }
-      _enableFilter = false;
       _enableSearch = false;
       currentHighlight ??= -1;
       currentHighlight = (currentHighlight! + 1) % filteredEntries.length;
       while (!filteredEntries[currentHighlight!].enabled) {
         currentHighlight = (currentHighlight! + 1) % filteredEntries.length;
       }
-      final String currentLabel = filteredEntries[currentHighlight!].label;
-      _localTextEditingController?.value = TextEditingValue(
-        text: currentLabel,
-        selection: TextSelection.collapsed(offset: currentLabel.length),
-      );
     });
   }
 
