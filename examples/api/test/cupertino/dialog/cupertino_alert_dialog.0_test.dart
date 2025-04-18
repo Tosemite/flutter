@@ -22,4 +22,19 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(actionText), findsNothing);
   });
+  testWidgets('Check for Directionality', (WidgetTester tester) async {
+    const String actionText = 'Yes';
+    await tester.pumpWidget(const example.AlertDialogApp());
+
+    // Launch the CupertinoAlertDialog.
+    await tester.tap(find.byType(CupertinoButton));
+    await tester.pump();
+    await tester.pumpAndSettle();
+    expect(find.text(actionText), findsOneWidget);
+
+    // Tap on an action to close the CupertinoAlertDialog.
+    await tester.tap(find.text(actionText));
+    await tester.pumpAndSettle();
+    expect(find.text(actionText), findsNothing);
+  });
 }
